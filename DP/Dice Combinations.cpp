@@ -1,3 +1,4 @@
+// https://www.cses.fi/problemset/task/1633
 #include <bits/stdc++.h>
 #include<ext/pb_ds/assoc_container.hpp>
 #include<ext/pb_ds/tree_policy.hpp>
@@ -83,7 +84,15 @@ void solve()
 {
     ll n;
     cin>>n;
-    
+    vl dp(n+1);
+    dp[0]=1;
+    dp[1]=1;
+    rep(i,2,n+1){
+        rep(j,1,7) {
+            if(i-j>=0) (dp[i]+=dp[i-j])%=MOD;
+        }
+    }
+    cout<<dp[n];
 }
 
 int main()
@@ -94,8 +103,8 @@ int main()
     freopen("Error.txt", "w", stderr);
     #endif
 
-    ll t;
-    cin >> t;
+    ll t=1;
+    // cin >> t;
     while (t--)
     {
        solve();
